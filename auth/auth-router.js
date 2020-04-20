@@ -6,7 +6,6 @@ const Users = require("../users/users-model.js");
 router.post("/register", (req, res) => {
     const creds = req.body;
 
-    
     function hashPass(creds) {
         var salt = bcrypt.genSaltSync(10);
 

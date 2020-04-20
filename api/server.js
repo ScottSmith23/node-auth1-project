@@ -23,9 +23,15 @@ const sessionConfig = {
   }
 };
 
+var corsOptions = {
+    origin: ["http://localhost:3000", "http://localhost:5000"],
+    credentials: true
+  };
+
 server.use(helmet());
 server.use(express.json());
-server.use(cors());
+server.use(cors(corsOptions))
+
 server.use(session(sessionConfig));
 
 server.use("/api/users", authenticator, usersRouter);
