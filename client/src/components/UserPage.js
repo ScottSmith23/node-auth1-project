@@ -4,6 +4,7 @@ import axios from "axios";
 
 const UserPage = () => {
   const [userList, setUserList] = useState([]);
+  const [isAuth, setIsAuth] = useState(false);
   axios.defaults.withCredentials = true
 
   useEffect(() => {
@@ -16,6 +17,7 @@ const UserPage = () => {
     .get('http://localhost:5000/api/users',{withCredentials: true})
     .then(res => {
       console.log(res.data);
+      setIsAuth(true);
       setUserList(res.data)
     });
 
@@ -23,12 +25,12 @@ const UserPage = () => {
 
   return (
     <>
-      {userList ? (
+      {isAuth ? (
         userList.map(user =>
              <p>Username: {user.username}</p>
              )
       ) : (
-        <p>ya ain't logged in seen</p>
+        <p>you are logged isn't</p>
       )}
     </>
   );
