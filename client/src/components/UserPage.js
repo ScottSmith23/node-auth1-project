@@ -4,6 +4,7 @@ import axios from "axios";
 
 const UserPage = () => {
   const [userList, setUserList] = useState([]);
+  axios.defaults.withCredentials = true
 
   useEffect(() => {
     getUsers();
@@ -12,7 +13,7 @@ const UserPage = () => {
   const getUsers = () => {
 
     axios
-    .get('http://localhost:5000/api/users')
+    .get('http://localhost:5000/api/users',{withCredentials: true})
     .then(res => {
       console.log(res.data);
       setUserList(res.data)
