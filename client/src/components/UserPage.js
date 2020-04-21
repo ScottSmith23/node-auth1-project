@@ -17,7 +17,6 @@ const UserPage = () => {
     .get('http://localhost:5000/api/users',{withCredentials: true})
     .then(res => {
       console.log(res.data);
-      setIsAuth(true);
       setUserList(res.data)
     });
 
@@ -25,7 +24,7 @@ const UserPage = () => {
 
   return (
     <>
-      {isAuth ? (
+      {userList.length ? (
         userList.map(user =>
              <p>Username: {user.username}</p>
              )
