@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "- Authentication.\r - Express Middleware.\r - Password Hashing.\r - Sessions\r - Cookies",
   "main": "index.js",
-  "proxy":"http://localhost:5000",
+  "proxy": "http://localhost:5000",
   "scripts": {
     "server": "nodemon",
     "start": "node index.js"
@@ -21,6 +21,7 @@
   "homepage": "https://github.com/ScottSmith23/node-auth1-project#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "connect-session-knex": "^1.6.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-session": "^1.17.1",

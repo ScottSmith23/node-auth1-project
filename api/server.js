@@ -2,12 +2,12 @@ const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
 const session = require('express-session');
-
+const KnexSessionStore = require('connect-session-knex')(session);
 
 const usersRouter = require("../users/users-router.js");
 const authenticator = require("../auth/authenticator.js");
 const authRouter = require("../auth/auth-router.js");
-
+const dbConnection = require("../data/dbConfig.js");
 
 const server = express();
 
@@ -20,7 +20,14 @@ const sessionConfig = {
     maxAge: 1000 * 60 * 10, //good for 10 mins in ms
     secure: process.env.USE_SECURE_COOKIES || false,
     httpOnly: true, 
-  }
+  },
+  store: new KnexSessionStore({
+    knex: dbConnection,
+    tablename: 'sessions',
+    sidfieldname: 'sid',
+    createtable: true,
+    clearInterval: 1000 * 60 * 60, //will removed expired sessions every hours
+  }),
 };
 
 var corsOptions = {

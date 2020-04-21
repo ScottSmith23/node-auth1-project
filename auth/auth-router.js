@@ -42,4 +42,19 @@ router.post("/login", (req, res) => {
     .catch(err => res.status(500).json({message: err.message}));
 });
 
+router.get('/logout',(req,res) => { 
+  if (req.session){
+  req.session.destroy(error => {
+    if(error){
+      res.status(500).json({errorMessage: 'plenty of room at the hotel calif'})
+    }else{
+      res.status(204).end();
+    }
+    
+  })}
+  else {
+    res.status(204).end();
+  }
+})
+
 module.exports = router;
